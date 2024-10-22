@@ -1,0 +1,35 @@
+@startuml
+
+left to right direction
+
+'Actors
+
+skinparam actorStyle awesome
+:Spieler: as sp << Human >>
+:Computer: as pc << Application >>
+
+
+'System
+rectangle Spiel {
+
+'Usecases
+(Spiel anlegen) as newGame
+(Aufgeben) as giveUp
+(Zug machen) as move
+(Zug validieren) as validate
+
+}
+
+'associations player
+sp --> newGame
+sp --> giveUp
+sp --> move
+
+'associations computer
+pc --> validate
+
+'includes
+move .> validate :include
+
+
+@enduml
