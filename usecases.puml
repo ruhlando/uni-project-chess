@@ -17,6 +17,8 @@ rectangle Spiel {
 (Aufgeben) as giveUp
 (Zug machen) as move
 (Zug validieren) as validate
+(Einstellungen ändern) as settings
+(Figur umwandeln) as fchange
 
 }
 
@@ -24,6 +26,8 @@ rectangle Spiel {
 sp --> newGame
 sp --> giveUp
 sp --> move
+sp --> settings
+sp --> fchange
 
 'associations computer
 pc --> validate
