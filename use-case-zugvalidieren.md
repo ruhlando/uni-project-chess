@@ -1,4 +1,4 @@
-Geschäftsprozess | Aufgeben
+Geschäftsprozess | Zug validieren
 ---|---
 Ziel, Ergebnisse | Der Spielzug eines Spielers wird validiert
 Akteure | Computer |
