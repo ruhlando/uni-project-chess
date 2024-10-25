@@ -1,0 +1,106 @@
+@startuml
+
+'Classes
+class Board {
+  isCreated : Boolean
+  player : Player[]
+  field : Field[]
+  buildBoard()
+  getPieces()
+  getFields()
+  setGameStatus()
+}
+class Field {
+  name : String
+  color : Color
+}
+abstract class Piece {
+  id : Integer
+  color : Color
+  isTaken : Boolean
+  canMove : Boolean
+}
+class King {
+  isCastled : Boolean
+}
+class Queen
+class Bishop
+class Knight
+class Rook
+class Pawn {
+  isConverted : Boolean
+  isMoved : Boolean
+}
+class Play {
+  gameStatus : String[]
+  countdown : Date
+  moveRecording : String[[]]
+  startGame()
+}
+class Player {
+  color : Color
+  playersTurn : Boolean
+  name : Name
+  triggerMove()
+  giveUp()
+  offerDraw()
+  acceptDraw()
+}
+class Move {
+  player : Player
+  selectedPiece : Piece
+  startPos : Field
+  endPos : Field
+  pieceTaken : Piece
+  makeMove()
+  updateGameStatus()
+  addMoveRecords()
+}
+class Account {
+  id : Integer
+  userName : String
+  eMail : String
+  password : String
+  language : String
+  resetPwd()
+  deleteAcc()
+}
+class MovementHandler {
+  --
+  Boolean validateMove()
+}
+class Rules {
+  name : Mode
+  gameTime : Date
+}
+enum Mode {
+  Bullet
+  Blitz
+  Rapid
+}
+
+'Associations
+
+Piece <|-- Knight
+Piece <|-- Queen
+Piece <|-- Rook
+Piece <|-- Bishop
+Piece <|-- King
+Piece <|-- Pawn
+
+Account "1" *-- "1" Player
+
+Board "2" -- "1" Player 
+Board "1" o-- "64" Field : consist of
+
+Move "*" -- "2" Field
+Move "*" -- "1" Player
+Move "*" -- "1-2" Piece
+Move "*" -- "1" MovementHandler
+
+Play "1" *-- "1" Board
+Play "*" -- "1" Rules
+Play "*" -- "2" Account
+
+
+@enduml
