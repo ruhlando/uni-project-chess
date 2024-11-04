@@ -1,0 +1,22 @@
+@startuml
+Player -> Chess : 1. will Bauer auf Zielfeld ziehen
+
+Chess -> Move : 1.1 Zug durchführen
+
+Move -> MovementHandler : 1.2 Regelwerk checken 
+
+alt Zug gültig
+alt Bauer nicht auf letztem Feld
+MovementHandler --> Move : Zug ausführen
+else Bauer auf letztem Feld
+MovementHandler --> Move : Bauer auf letztem Feld
+Move -> Chess : Bauer ersetzen
+end
+
+
+else Zug ungültig
+MovementHandler --> Move : Zug ungültig
+Move -> Player : Zug nicht möglich
+end
+
+@enduml
