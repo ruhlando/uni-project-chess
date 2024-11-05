@@ -1,0 +1,63 @@
+@startuml
+
+' Teilnehmer
+actor Player
+participant Play
+participant Board
+participant Field
+participant Pawn as Piece
+participant MovementHandler
+participant GameStatus
+participant GameTimer
+
+' Start des Zuges
+Player -> GameTimer++ : startTimer()
+Player -> Play : triggerMove()
+Play -> Board : getPieces()
+Board -> Piece : makeMove()
+
+loop checkTime()
+alt timeout
+GameTimer ->> Play : timeOut()
+else moveComplete
+Play -> GameTimer : stopTimer()
+GameTimer--
+end
+end
+
+' Validierung des Bauernzugs
+Piece -> MovementHandler : validateMove()
+MovementHandler -> Field : isOccupied()
+Field --> MovementHandler : return (frei/besetzt)
+MovementHandler --> Piece : return (Zug gültig/ungültig)
+
+' Bedingung: En Passant, Promotion oder Schlagen
+alt En Passant möglich
+    Piece -> Field : move to target field
+    Field -> Board : remove opponent Piece (En Passant)
+end
+
+alt Promotion möglich
+    Piece -> Player : prompt for promotion choice
+    Player -> Piece : convert to chosen Piece
+end
+
+alt Capture
+    Piece -> Field : move to target field
+    Field -> Board : remove opponent Piece
+end
+
+' Normaler Zug oder nach Sonderzug ausgeführt
+Piece -> Field : move to target field
+Piece -> Play : recordMove()
+
+' Spielstatus aktualisieren
+Piece -> GameStatus : updateStatus()
+GameStatus -> Play : checkForCheck()
+GameStatus -> Play : checkForMate()
+
+
+' Rückmeldung an den Spieler
+Play --> Player : Move completed
+
+@enduml

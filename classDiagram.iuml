@@ -1,0 +1,145 @@
+@startuml
+
+'Classes
+class Board {
+  isCreated : Boolean
+  player : Player[]
+  field : Field[]
+  buildBoard()
+  getPieces()
+  getFields()
+  setGameStatus()
+}
+class Field {
+  name : String <<chess notation>>
+  color : Color
+  isOccupied() : Boolean
+  getOccupant() : Piece
+}
+abstract class Piece {
+  id : Integer
+  startPos : Field
+  endPos: Field
+  color : Color
+  isTaken : Boolean
+  canMove : Boolean
+  makeMove()
+  updateGameStatus()
+  recordMove()
+}
+class King {
+  isCastled : Boolean
+  castle()
+}
+class Queen
+class Bishop {
+  moveDiagonally()
+}
+class Knight {
+  moveInL()
+}
+class Rook {
+  castle()
+}
+class Pawn {
+  isConverted : Boolean
+  isMoved : Boolean
+  promote()
+}
+class Play {
+  moveRecording : String[[]]
+  startGame()
+  endGame()
+}
+
+class GameTimer {
+  remainingTime : Integer
+  startTimer()
+  stopTimer()
+  timeOut()
+
+}
+
+class Player {
+  color : Color
+  playersTurn : Boolean
+  name : Name
+  triggerMove()
+  giveUp()
+  offerDraw()
+  acceptDraw()
+}
+
+class Account {
+  id : Integer
+  userName : String
+  eMail : String
+  password : String
+  language : String
+  resetPwd()
+  deleteAcc()
+}
+
+class MovementHandler {
+  --
+  getGameStatus() : GameStatus
+  checkForCheck() : Boolean
+  checkForMate() : Boolean
+  checkForDraw() : Boolean
+  validateMove() : Boolean
+}
+
+class GameSettings {
+  mode : Mode
+  gameTime : Date
+}
+
+class Move {
+  startPos : Field
+  endPos : Field
+  timestamp : Date
+  isCapture : Boolean
+}
+
+class GameStatus {
+  gameStatus : String[]
+  isCheck : Boolean
+  isCheckmate : Boolean
+  isStalemate : Boolean
+  updateStatus()
+}
+
+enum Mode {
+  Bullet
+  Blitz
+  Rapid
+}
+
+'Associations
+
+Piece <|-- Knight
+Piece <|-- Queen
+Piece <|-- Rook
+Piece <|-- Bishop
+Piece <|-- King
+Piece <|-- Pawn
+
+Account "1" *-- "1" Player
+
+Board "1" -- "2" Player 
+Board "1" o-- "64" Field : consist of
+
+Player "1" o-- "0...16" Piece : owns
+
+Piece "1" -- "1" Field
+Piece "*" -- "1" MovementHandler
+Piece "1" *-- "*" Move : performs
+
+Play "1" *-- "1" Board
+Play "*" -- "1" GameSettings
+Play "*" -- "2" Account
+Play "1" *-- "1" MovementHandler
+Play "1" *-- "1" GameStatus
+Play "1" *-- "1" GameTimer
+
+@enduml
