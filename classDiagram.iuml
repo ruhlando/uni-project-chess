@@ -124,12 +124,12 @@ Piece <|-- Bishop
 Piece <|-- King
 Piece <|-- Pawn
 
-Account "1" *-- "1..*" Player
+Account "1" *-- "1" Player
 
-Board "2" -- "1" Player 
+Board "1" -- "2" Player 
 Board "1" o-- "64" Field : consist of
 
-Player "1" o-- "*" Piece : owns
+Player "1" o-- "0...16" Piece : owns
 
 Piece "1" -- "1" Field
 Piece "*" -- "1" MovementHandler
@@ -138,7 +138,7 @@ Piece "1" *-- "*" Move : performs
 Play "1" *-- "1" Board
 Play "*" -- "1" GameSettings
 Play "*" -- "2" Account
-Play "1" -- "1" MovementHandler
+Play "1" *-- "1" MovementHandler
 Play "1" *-- "1" GameStatus
 Play "1" *-- "1" GameTimer
 
