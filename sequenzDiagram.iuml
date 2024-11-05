@@ -27,8 +27,8 @@ alt En Passant möglich
 end
 
 alt Promotion möglich
-    Piece -> Play : prompt for promotion choice
-    Play -> Piece : convert to chosen Piece
+    Piece -> Player : prompt for promotion choice
+    Player -> Piece : convert to chosen Piece
 end
 
 alt Capture
