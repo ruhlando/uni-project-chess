@@ -5,7 +5,7 @@ Modellierung des Spiels Schach <br>
 
 
 Schach ist ein strategisches Brettspiel für zwei Spieler. Hier sind die grundlegenden Regeln:
-Spielbrett und Aufstellung
+### Spielbrett und Aufstellung
 
 Das Schachbrett besteht aus 64 Feldern (8x8) in abwechselnd hellen und dunklen Farben.
 Jeder Spieler beginnt mit 16 Figuren: 1 König, 1 Dame, 2 Türme, 2 Läufer, 2 Springer und 8 Bauern.
