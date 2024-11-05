@@ -8,11 +8,22 @@ participant Field
 participant Pawn as Piece
 participant MovementHandler
 participant GameStatus
+participant GameTimer
 
 ' Start des Zuges
+Player -> GameTimer++ : startTimer()
 Player -> Play : triggerMove()
 Play -> Board : getPieces()
 Board -> Piece : makeMove()
+
+loop checkTime()
+alt timeout
+GameTimer ->> Play : timeOut()
+else moveComplete
+Play -> GameTimer : stopTimer()
+GameTimer--
+end
+end
 
 ' Validierung des Bauernzugs
 Piece -> MovementHandler : validateMove()
@@ -44,6 +55,7 @@ Piece -> Play : recordMove()
 Piece -> GameStatus : updateStatus()
 GameStatus -> Play : checkForCheck()
 GameStatus -> Play : checkForMate()
+
 
 ' Rückmeldung an den Spieler
 Play --> Player : Move completed
