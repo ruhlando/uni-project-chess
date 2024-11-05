@@ -56,7 +56,8 @@ class GameTimer {
   remainingTime : Integer
   startTimer()
   stopTimer()
-  resetTimer()
+  timeOut()
+
 }
 
 class Player {
