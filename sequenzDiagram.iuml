@@ -1,22 +1,28 @@
 @startuml
-Player -> Chess : 1. will Bauer auf Zielfeld ziehen
 
-Chess -> Move : 1.1 Zug durchführen
+Player -> Pawn : Spieler wählt Figur aus
+Pawn -> MovementHandler : mögliche Züge abfragen
+MovementHandler --> Player : Mögliche Zielfelder anzeigen
+Player -> Field : Feld auswählen
+Field ->> Pawn : Neues Feld zuordnen
+Field --> MovementHandler : Spielzug bestätigen
 
-Move -> MovementHandler : 1.2 Regelwerk checken 
+'Mögliche Auswirkungen prüfen
 
-alt Zug gültig
-alt Bauer nicht auf letztem Feld
-MovementHandler --> Move : Zug ausführen
-else Bauer auf letztem Feld
-MovementHandler --> Move : Bauer auf letztem Feld
-Move -> Chess : Bauer ersetzen
+alt hat geschlagen
+MovementHandler -> Piece
 end
 
-
-else Zug ungültig
-MovementHandler --> Move : Zug ungültig
-Move -> Player : Zug nicht möglich
+alt wenn noch nicht gezogen
+MovementHandler -> Pawn : ist zwei Felder gezogen
 end
 
+alt Bauer auf Feld der letzten Reihe
+MovementHandler ->> Pawn : ist eingetauscht
+MovementHandler -> Player : mögliche Tauschfiguren anzeigen
+Player -> Piece : Figur auswählen
+Piece --> MovementHandler : gewählte Figur bestätigen 
+end
+MovementHandler -> Play : Spielstatus updaten
+MovementHandler -> Player : Zug abgeschlossen
 @enduml
