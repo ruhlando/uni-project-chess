@@ -11,32 +11,54 @@ class Board {
   setGameStatus()
 }
 class Field {
-  name : String
+  name : String <<chess notation>>
   color : Color
+  isOccupied() : Boolean
+  getOccupant() : Piece
 }
 abstract class Piece {
   id : Integer
+  startPos : Field
+  endPos: Field
   color : Color
   isTaken : Boolean
   canMove : Boolean
+  makeMove()
+  updateGameStatus()
+  recordMove()
 }
 class King {
   isCastled : Boolean
+  castle()
 }
 class Queen
-class Bishop
-class Knight
-class Rook
+class Bishop {
+  moveDiagonally()
+}
+class Knight {
+  moveInL()
+}
+class Rook {
+  castle()
+}
 class Pawn {
   isConverted : Boolean
   isMoved : Boolean
+  promote()
 }
 class Play {
-  gameStatus : String[]
-  countdown : Date
   moveRecording : String[[]]
   startGame()
+  endGame()
 }
+
+class GameTimer {
+  remainingTime : Integer
+  startTimer()
+  stopTimer()
+  resetTimer()
+}
+
 class Player {
   color : Color
   playersTurn : Boolean
@@ -46,16 +68,7 @@ class Player {
   offerDraw()
   acceptDraw()
 }
-class Move {
-  player : Player
-  selectedPiece : Piece
-  startPos : Field
-  endPos : Field
-  pieceTaken : Piece
-  makeMove()
-  updateGameStatus()
-  addMoveRecords()
-}
+
 class Account {
   id : Integer
   userName : String
@@ -65,14 +78,36 @@ class Account {
   resetPwd()
   deleteAcc()
 }
+
 class MovementHandler {
   --
-  Boolean validateMove()
+  getGameStatus() : GameStatus
+  checkForCheck() : Boolean
+  checkForMate() : Boolean
+  checkForDraw() : Boolean
+  validateMove() : Boolean
 }
-class Rules {
-  name : Mode
+
+class GameSettings {
+  mode : Mode
   gameTime : Date
 }
+
+class Move {
+  startPos : Field
+  endPos : Field
+  timestamp : Date
+  isCapture : Boolean
+}
+
+class GameStatus {
+  gameStatus : String[]
+  isCheck : Boolean
+  isCheckmate : Boolean
+  isStalemate : Boolean
+  updateStatus()
+}
+
 enum Mode {
   Bullet
   Blitz
@@ -88,19 +123,22 @@ Piece <|-- Bishop
 Piece <|-- King
 Piece <|-- Pawn
 
-Account "1" *-- "1" Player
+Account "1" *-- "1..*" Player
 
 Board "2" -- "1" Player 
 Board "1" o-- "64" Field : consist of
 
-Move "*" -- "2" Field
-Move "*" -- "1" Player
-Move "*" -- "1-2" Piece
-Move "*" -- "1" MovementHandler
+Player "1" o-- "*" Piece : owns
+
+Piece "1" -- "1" Field
+Piece "*" -- "1" MovementHandler
+Piece "1" *-- "*" Move : performs
 
 Play "1" *-- "1" Board
-Play "*" -- "1" Rules
+Play "*" -- "1" GameSettings
 Play "*" -- "2" Account
-
+Play "1" -- "1" MovementHandler
+Play "1" *-- "1" GameStatus
+Play "1" *-- "1" GameTimer
 
 @enduml
