@@ -1,5 +1,15 @@
 # uni-project-chess
-Modellierung des Spiels Schach <br>
+Im Rahmen unserer Software-Engineering Vorlesung entwerfen wir eine **Modellierung** des Spiels Schach.<br>
+Die **Projektanforderungen** sehen wie folgt aus:
+- Jeder Spieler eigener/s PC / Tablet / Smartphone, Spiel läuft auf einem Server
+- Anwendung stellt graphisch dar und checkt Validität von Benutzeraktionen
+- Nicht: Computer als Spieler
+
+Dafür werden folgende **UML-Diagrame** ausgearbeitet:
+- Use-Case Diagramm
+- Klassendiagramm
+- Sequenzdiagramm
+
 
 ## Schachregeln
 
