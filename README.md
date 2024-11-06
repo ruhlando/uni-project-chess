@@ -124,6 +124,26 @@ Schlägt diagonal ein Feld vorwärts.
 
 <img src="img/pawn_promotion.png" alt="Bauernumwandlung" width="550"/>
 
+## 👨🏽‍💻 Unsere Vorgehensweise
+<table>
+<tr>
+<td>
+
+### 🛠️ Tools:
+
+- Github Repository
+- Github Projects
+- [PlantUML](https://plantuml.com)
+
+</td>
+<td>
+
+<img src="https://media.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif?cid=790b7611k5o7mvfr270ww0tu2q4dhea4vv65bavl95vlvvk9&ep=v1_gifs_search&rid=giphy.gif&ct=g" alt="Github Gif" width="200"/>
+
+</td>
+</tr>
+</table>
+
 ## ⛓️‍💥 UML-Diagramme
 
 ### `Use-Case Diagramm`
@@ -148,6 +168,9 @@ Zusätzlich haben wir ein [Data Dictionary](/Classes/dataDictionary.md) und eine
 ![Sequenzdiagramm Bauernzug](/img/UML/sequence-diagram-pawn.png)
 
 ## 💡 Unsere Learnings
+- [PlantUML](https://plantuml.com) ein sehr cooles Tool!
+- Umgang mit Github (Versionskontrolle, Zusammenarbeit mit dem Team, etc.)
+- Best Practices des Software-Engineerings, bzw. der Softwaremodellierung
 
 ## ℹ️ Quellen
 Garber, Thomas. (2009). *Schach - Die Spielregeln*. [PDF](/Schachregeln.pdf)
