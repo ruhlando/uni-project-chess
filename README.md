@@ -111,13 +111,17 @@ Schlägt diagonal ein Feld vorwärts.
 
 **Patt:** Das Spiel endet unentschieden, wenn ein Spieler am Zug ist, aber keinen legalen Zug machen kann, ohne seinen König ins Schach zu setzen.  
 
+
 **Rochade:** Ein spezieller Zug, bei dem König und Turm gleichzeitig bewegt werden.
+
 <img src="img/castling.png" alt="Rochade" width="550"/>
 
 **En Passant:** Eine spezielle Fangmethode für Bauern.
+
 <img src="img/en_passant.png" alt="En Passant" width="550"/>
 
 **Bauernumwandlung:** Ein Bauer, der die gegnerische Grundlinie erreicht, wird in eine andere Figur (üblicherweise eine Dame) umgewandelt.
+
 <img src="img/pawn_promotion.png" alt="Bauernumwandlung" width="550"/>
 
 ## ⛓️‍💥 UML-Diagramme
