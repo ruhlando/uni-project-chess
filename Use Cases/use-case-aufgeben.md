@@ -3,7 +3,7 @@ Geschäftsprozess | Aufgeben
 Ziel, Ergebnisse | Ein Spieler gibt auf und das Spiel Endet
 Akteure | Spieler |
 Vorbedingungen | Spiel wurde angelegt und gestartet
-Auslösendes Ereignis | Der Spieler der Aufgeben möchte klickt den Button "Aufgeben"
+Auslösendes Ereignis | Der Spieler der aufgeben möchte, klickt den Button "Aufgeben"
 Nachbedingung bei Erfolg | Das Spiel endet, der Spieler der nicht aufgegeben hat gewinnt
 Nachbedingung bei Fehlschlag | Spiel läuft weiter
 Eingehende Daten | Aktueller Spielstand, Zeit
