@@ -165,7 +165,7 @@ Zusätzlich haben wir ein [Data Dictionary](/Classes/dataDictionary.md) und eine
 ### `Sequenzdiagramm`
 <p>Wir haben für den Zug eines Bauern (mit all seinen Möglichkeiten: En Passant, Umwandlung) ein UML Sequenzdiagramm erstellt: </p>
 
-![Sequenzdiagramm Bauernzug](/img/UML/sequence-diagram-pawn.png)
+![Sequenzdiagramm Bauernzug](/img/UML/sequence-diagram-pawn_move.png)
 
 ## 💡 Unsere Learnings
 - [PlantUML](https://plantuml.com) ein sehr cooles Tool!
