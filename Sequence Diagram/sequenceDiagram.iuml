@@ -12,9 +12,9 @@ participant GameTimer
 
 ' Start des Zuges
 Player -> GameTimer++ : startTimer()
-Player -> Play : triggerMove()
-Play -> Board : getPieces()
-Board -> Piece : makeMove()
+Player -> Play++ : triggerMove()
+Play -> Board++ : getPieces()
+Board -> Piece++ : makeMove()
 
 loop checkTime()
 alt timeout
@@ -26,15 +26,18 @@ end
 end
 
 ' Validierung des Bauernzugs
-Piece -> MovementHandler : validateMove()
-MovementHandler -> Field : isOccupied()
+Piece -> MovementHandler++ : validateMove()
+MovementHandler -> Field++ : isOccupied()
 Field --> MovementHandler : return (frei/besetzt)
+Field--
 MovementHandler --> Piece : return (Zug gültig/ungültig)
+MovementHandler--
 
 ' Bedingung: En Passant, Promotion oder Schlagen
 alt En Passant möglich
-    Piece -> Field : move to target field
+    Piece -> Field++ : move to target field
     Field -> Board : remove opponent Piece (En Passant)
+    Field--
 end
 
 alt Promotion möglich
@@ -43,21 +46,26 @@ alt Promotion möglich
 end
 
 alt Capture
-    Piece -> Field : move to target field
+    Piece -> Field++ : move to target field
     Field -> Board : remove opponent Piece
+    Field--
 end
 
 ' Normaler Zug oder nach Sonderzug ausgeführt
-Piece -> Field : move to target field
+Piece -> Field++ : move to target field
+Field--
 Piece -> Play : recordMove()
+Piece--
 
 ' Spielstatus aktualisieren
-Piece -> GameStatus : updateStatus()
+Play -> GameStatus++ : updateStatus()
 GameStatus -> Play : checkForCheck()
 GameStatus -> Play : checkForMate()
-
+GameStatus--
 
 ' Rückmeldung an den Spieler
 Play --> Player : Move completed
+Play--
+Board--
 
 @enduml
