@@ -19,6 +19,7 @@ Board -> Piece++ : makeMove()
 loop checkTime()
 alt timeout
 GameTimer ->> Play : timeOut()
+Play -> Player : time expired
 else moveComplete
 Play -> GameTimer : stopTimer()
 GameTimer--
